@@ -6,10 +6,21 @@ class Joueur extends Humain
 {
     private int $numeroMaillot;
 
-    public function __construct(string $nom, string $prenom, DateTime $dateNaissance, int $numeroMaillot)
+    private Equipe $equipe;
+    public function __construct(string $nom, string $prenom, DateTime $dateNaissance, int $numeroMaillot, Equipe $equipe)
     {
-        $this->numeroMaillot = $numeroMaillot;
         parent::__construct($nom, $prenom, $dateNaissance);
+        $this->equipe = $equipe;
+        //Risque d'incohérence ! il faut que le joueur soit dans l'équipe !
+        $equipe->ajouterJoueur($this);
+
+        $this->numeroMaillot = $numeroMaillot;
+
+    }
+
+    public function getEquipe(): Equipe
+    {
+        return $this->equipe;
     }
 
     public function getNumeroMaillot(): int
@@ -24,7 +35,7 @@ class Joueur extends Humain
 
     public function donneTexte(): string
     {
-        return "Joueur : ".$this->getNom()." ".$this->getPrenom()." numéro : ".$this->getNumeroMaillot();
+        return "Joueur : ".$this->getNom()." ".$this->getPrenom()." numéro : ".$this->getNumeroMaillot() ." Equipe : ".$this->getEquipe()->getPays();
     }
 
 }
