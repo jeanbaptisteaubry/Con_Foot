@@ -26,7 +26,7 @@ class Substitution extends Evenement
 
     public function donneTexte(): string
     {
-        return "Substitution ".$this->getTemps()->format("H:i:s")." : " . $this->sortant->getNom() . " " . $this->sortant->getPrenom() . " sort, " . $this->entrant->getNom() . " " . $this->entrant->getPrenom() . " entre";
+        return "Substitution ".$this->getTemps()->format("H:i:s")." : " . $this->sortant->getNom() . " " . $this->sortant->getPrenom() . " sort, " . $this->entrant->getNom() . " " . $this->entrant->getPrenom() . " entre\n";
     }
 
 

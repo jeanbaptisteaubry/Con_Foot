@@ -15,4 +15,9 @@ class Evenement
     {
         return $this->temps;
     }
+
+    public function donneTexte(): string
+    {
+        return "Evenement : ".$this->getTemps()->format("H:i:s")."\n";
+    }
 }
