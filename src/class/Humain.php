@@ -2,6 +2,7 @@
 namespace App\class;
 
 use DateTime;
+use Exception;
 
 class Humain
 {
@@ -13,11 +14,29 @@ class Humain
     //Constructeur => Sert à créer l’objet
     public function __construct(string $nom, string $prenom, DateTime $dateNaissance)
     {
+        //Erreures potentielles à detecter : $nom ou $prenom vides ou avec des caractères interdits
+
+        if($nom == "" || $prenom == "")
+        {
+            throw new Exception("Le nom ou le prénom est vide");
+        }
+        //Erreures potentielles à detecter : $dateNaissance dans le futur
+        if($dateNaissance > new DateTime())
+        {
+            throw new Exception("La date de naissance est dans le futur");
+        }
+
         //On initialise les propriétés
         //$this signifie “cette instance”, donc l'objet en cours
         $this->nom = $nom; //$this->nom est la propriété nom de l'objet en cours
                            //$nom est le paramètre de la fonction
         $this->prenom = $prenom;
+
+
+
+
+
+
         $this->dateNaissance = $dateNaissance;
     }
 

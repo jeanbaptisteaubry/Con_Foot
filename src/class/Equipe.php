@@ -29,6 +29,8 @@ class Equipe
         {
             //Incohérence, un objet joueur ne peut être changé d'équipe
             //=> Erreur dans le code : Exception !
+            throw new \Exception("Le joueur n'est pas dans l'équipe");
+
         }
         //Traitement des doublons :
         // Soit on ajoute 2 fois le même joueur,
@@ -38,6 +40,8 @@ class Equipe
         {
             //Il a été trouvé, il y a un doublon
             //=> Erreur dans le code : Exception !
+            throw new \Exception("Joueur en doublon");
+
         }
         //On va programmer à la main la rechercher de valeur !
         foreach($this->listeJoueurs as $joueurEquipe)
@@ -46,8 +50,15 @@ class Equipe
                 $joueurEquipe->getPrenom() == $joueur->getPrenom() &&
                 $joueurEquipe->getDateNaissance() == $joueur->getDateNaissance())
             {
-                //Il y a un doublon
-                //=> Erreur dans le code : Exception !
+                throw new \Exception("Joueur en doublon");
+            }
+        }
+        //Un joueur a déjà ce numéro de maillot
+        foreach($this->listeJoueurs as $joueurEquipe)
+        {
+            if($joueurEquipe->getNumeroMaillot() == $joueur->getNumeroMaillot())
+            {
+                throw new \Exception("Numéro de maillot déjà utilisé");
             }
         }
 

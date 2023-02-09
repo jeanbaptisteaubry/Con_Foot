@@ -8,6 +8,10 @@ class Arbitre extends Humain
 
     public function __construct(string $nom, string $prenom, DateTime $dateNaissance, string $pays)
     {
+        //Test arbitre sans pays
+        if($pays == ""){
+            throw new \Exception("L'arbitre doit avoir un pays");
+        }
         $this->pays = $pays;
         parent::__construct($nom, $prenom, $dateNaissance);
     }

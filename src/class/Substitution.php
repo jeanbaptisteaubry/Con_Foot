@@ -9,6 +9,10 @@ class Substitution extends Evenement
 
     public function __construct(\DateTime $temps, Joueur $sortant, Joueur $entrant)
     {
+        //Les joueurs doivent être de la même équipe
+        if($sortant->getEquipe() != $entrant->getEquipe()){
+            throw new \Exception("Les joueurs doivent être de la même équipe");
+        }
         parent::__construct($temps);
         $this->sortant = $sortant;
         $this->entrant = $entrant;

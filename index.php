@@ -1,73 +1,198 @@
 <?php
-include_once "vendor/autoload.php";
+
+use App\class\Arbitre;
 use App\class\Equipe;
 use App\class\Joueur;
 use App\class\Selectionneur;
-use App\class\Substitution;
-use App\class\Faute;
-use App\class\Evenement;
-$edf = new Equipe("France");
+use App\class\Stade;
+use App\class\Jeu;
 
-$GO= new Joueur("Giroud","Olivier", new DateTime("1986-09-30"), 9, $edf);
+require_once "vendor/autoload.php";
+$stade = new Stade ("Luzhniki Arena (Moscou)");
+$EqFR= new Equipe ("France");
+
+$EqFR->setEstEntrainee(new Selectionneur("Deschamps","Didier", new DateTime("1969-08-15"), $EqFR));
+
+$FR9= new Joueur("Giroud","O", new DateTime("1900-01-01"), 9, $EqFR);
+
+$FR7= new Joueur("Griezmann","A", new DateTime("1900-01-01"), 7, $EqFR);
+
+$FR21= new Joueur("Hernandez","Lucas", new DateTime("1900-01-01"), 21, $EqFR);
+
+$FR13= new Joueur("Kante","NBGolo", new DateTime("1900-01-01"), 13, $EqFR);
+
+$FR1= new Joueur("Lloris","Hugo", new DateTime("1900-01-01"), 1, $EqFR);
+
+$FR14= new Joueur("Matuidi","Blaise", new DateTime("1900-01-01"), 14, $EqFR);
+
+$FR10= new Joueur("Mbappe","K", new DateTime("1900-01-01"), 10, $EqFR);
+
+$FR2= new Joueur("Pavard","B", new DateTime("1900-01-01"), 2, $EqFR);
+
+$FR6= new Joueur("Pogba","P", new DateTime("1900-01-01"), 6, $EqFR);
+
+$FR5= new Joueur("Umtiti","S.", new DateTime("1900-01-01"), 5, $EqFR);
+
+$FR4= new Joueur("Varane"," R.", new DateTime("1900-01-01"), 4, $EqFR);
+
+$FR23= new Joueur("Areola","A", new DateTime("1900-01-01"), 23, $EqFR);
+
+$FR11= new Joueur("Dembele","O", new DateTime("1900-01-01"), 11, $EqFR);
+
+$FR18= new Joueur("Fekir","N", new DateTime("1900-01-01"), 18, $EqFR);
+
+$FR3= new Joueur("Kimpembe","P", new DateTime("1900-01-01"), 3, $EqFR);
+
+$FR8= new Joueur("Lemar","T", new DateTime("1900-01-01"), 8, $EqFR);
+
+$FR16= new Joueur("Mandanda","S.", new DateTime("1900-01-01"), 16, $EqFR);
+
+$FR22= new Joueur("Mendy","B", new DateTime("1900-01-01"), 22, $EqFR);
+
+$FR15= new Joueur("N'Zonzi","S.", new DateTime("1900-01-01"), 15, $EqFR);
+
+$FR17= new Joueur("Rami","A", new DateTime("1900-01-01"), 17, $EqFR);
+
+$FR19= new Joueur("Sidibe","D", new DateTime("1900-01-01"), 19, $EqFR);
+
+$FR20= new Joueur("Thauvin","F", new DateTime("1900-01-01"), 20, $EqFR);
+
+$FR12= new Joueur("Tolisso","C", new DateTime("1900-01-01"), 12, $EqFR);
+
+$EqCR= new Equipe ("Croatie");
+$EqCR->setEstEntrainee(new Selectionneur("Looser","Perdant", new DateTime("1969-08-15"), $EqCR));
+$CR11= new Joueur("Brozovic","M", new DateTime("1900-01-01"), 11,  $EqCR);
+$CR6= new Joueur("Lovren","D", new DateTime("1900-01-01"), 6,  $EqCR);
+$CR17= new Joueur("Mandzukic","M", new DateTime("1900-01-01"), 17,  $EqCR);
+$CR10= new Joueur("Modric","L", new DateTime("1900-01-01"), 10,  $EqCR);
+$CR4= new Joueur("Perisic","I", new DateTime("1900-01-01"), 4,  $EqCR);
+$CR7= new Joueur("Rakitic","I", new DateTime("1900-01-01"), 7,  $EqCR);
+$CR18= new Joueur("Rebic","A", new DateTime("1900-01-01"), 18,  $EqCR);
+$CR3= new Joueur("Strinic","I", new DateTime("1900-01-01"), 3,  $EqCR);
+$CR23= new Joueur("Subasic","D", new DateTime("1900-01-01"), 23,  $EqCR);
+$CR21= new Joueur("Vida","D", new DateTime("1900-01-01"), 21,  $EqCR);
+$CR2= new Joueur("Vrsaljko","S", new DateTime("1900-01-01"), 2,  $EqCR);
+$CR19= new Joueur("Badelj","M", new DateTime("1900-01-01"), 19,  $EqCR);
+$CR14= new Joueur("Bradaric","F", new DateTime("1900-01-01"), 14,  $EqCR);
+$CR15= new Joueur("Caleta-Car","D", new DateTime("1900-01-01"), 15,  $EqCR);
+$CR5= new Joueur("Corluka","V", new DateTime("1900-01-01"), 5,  $EqCR);
+$CR13= new Joueur("Jedvaj","T", new DateTime("1900-01-01"), 13,  $EqCR);
+$CR12= new Joueur("Kalinic","L", new DateTime("1900-01-01"), 12,  $EqCR);
+$CR8= new Joueur("Kovacic","M", new DateTime("1900-01-01"), 8,  $EqCR);
+$CR9= new Joueur("Kramaric","A", new DateTime("1900-01-01"), 9,  $EqCR);
+$CR1= new Joueur("Livakovic","D", new DateTime("1900-01-01"), 1,  $EqCR);
+$CR22= new Joueur("Pivaric","J", new DateTime("1900-01-01"), 22,  $EqCR);
+$CR20= new Joueur("Pjaca","M", new DateTime("1900-01-01"), 20,  $EqCR);
+$listeTitulaire = [];
+$listeTitulaire[] = $FR9;
+$listeTitulaire[] = $FR7;
+$listeTitulaire[] = $FR21;
+$listeTitulaire[] = $FR13;
+$listeTitulaire[] = $FR1;
+$listeTitulaire[] = $FR14;
+$listeTitulaire[] = $FR10;
+$listeTitulaire[] = $FR2;
+$listeTitulaire[] = $FR6;
+$listeTitulaire[] = $FR5;
+$listeTitulaire[] = $FR4;
+$listeTitulaire[] = $FR23;
 
 
-$DD= new Selectionneur("Deschamps","Didier", new DateTime("1969-08-15"), $edf);
+$listeTitulaire[] = $CR11;
+$listeTitulaire[] = $CR6;
+$listeTitulaire[] = $CR17;
+$listeTitulaire[] = $CR10;
+$listeTitulaire[] = $CR4;
+$listeTitulaire[] = $CR7;
+$listeTitulaire[] = $CR18;
+$listeTitulaire[] = $CR3;
+$listeTitulaire[] = $CR23;
+$listeTitulaire[] = $CR21;
+$listeTitulaire[] = $CR2;
 
-$MK= new Joueur("MBappé","Kylian", new DateTime("1998-12-20"), 10, $edf);
+$arb = new Arbitre ("Pitana ","Nestor", new DateTime("1975-06-17"), "Argentin");
+$finale = new Jeu (new DateTime("2018-07-15 17:00:00"), $EqFR,  $EqCR, $arb , $stade , $listeTitulaire);
+$finale->ajouterBut($CR17, new DateTime("0:18:00"), "CSC", $EqFR,false);
+echo "{$finale->donneScoreEquipeDomicile()}-{$finale->donneScoreEquipeExterieur()}\n";
+//    Résultat dans la console :
 
-$faitDeJeu = new \App\class\FaitDeJeu(new DateTime("00:08:00"), $GO, "Se recoiffe !");
+//        1 - 0
 
+$finale->ajouterBut($CR4,new DateTime("0:28:00"), "en action", $EqCR,false   );
+echo "{$finale->donneScoreEquipeDomicile()}-{$finale->donneScoreEquipeExterieur()}\n";
+//    Résultat dans la console :
 
-$remp = new Substitution(new DateTime("00:10:00"), $GO, $MK);
+//        1 - 1
 
-echo $remp->donneTexte();
+$finale->ajouterBut($FR7,new DateTime("0:38:00"), "grizou",  $EqFR, true);
+echo "{$finale->donneScoreEquipeDomicile()}-{$finale->donneScoreEquipeExterieur()}\n";
+//    Résultat dans la console :
 
-$event = new Evenement(new DateTime("0:08:00"));
+//        2 - 1
 
-echo  $event->donneTexte();
+$finale->ajouterBut($FR6,new DateTime("0:59:00"), "pogba !!!", $EqFR, false  );
+echo "{$finale->donneScoreEquipeDomicile()}-{$finale->donneScoreEquipeExterieur()}\n";
+//    Résultat dans la console :
+
+//        3 - 1
+
+$finale->ajouterBut($FR10,new DateTime("1:05:00"), "kiki",$EqFR, false  );
+echo "{$finale->donneScoreEquipeDomicile()}-{$finale->donneScoreEquipeExterieur()}\n";
+//    Résultat dans la console :
+
+//        4 - 1
+
+$finale->ajouterBut( $CR17,new DateTime("1:28:00"), "bavure", $EqCR, false);
+echo "{$finale->donneScoreEquipeDomicile()}-{$finale->donneScoreEquipeExterieur()}\n";
+//    Résultat dans la console :
+
+//        4 - 2
+
+echo($finale->donneTexte(true));
 
 //    Résultat dans la console :
 
-//        8:00
+//        Equipe domicile : France
 
-$NF= new Joueur("Fekir","Nabil ", new DateTime("1993-06-18"), 10, $edf);
+//        Sélectionneur : Deschamps Didier
 
-$sub = new Substitution (new DateTime("01:21:00"), $NF, $GO);
+//         Titulaires:
 
-echo $sub->donneTexte();
+//         1 Lloris L
 
-//    Résultat dans la console :
+//        ... toute la liste !
 
-//        81' : Entrant : Fékir Nabil , Sortant : Giroud Olivier
+//        4 Varane R
 
-$KN = new Joueur("Kante","NGolo", new DateTime("1991-03-29"), 13, $edf);
+//         Remplaçants:
 
-$ft1 = new Faute(new DateTime("0:27:00"), $KN, "mauvais geste", true, false,  );
-echo $ft1->donneTexte();
-//    Résultat dans la console :
+//          23 Aerola A
 
-//        27' : Carton jaune : Ngole Kanté : Mauvais geste
+//        Toute la liste
 
-$cro = new Equipe ("Croatie");
+//        Equipe Extérieure : Croatie
 
-$CRPI= new Joueur("Perisic","Ivan", new DateTime("1900-01-01"),  4, $cro);
+//        Sélectionneur : ...
 
-$ft2 = new Faute(new DateTime("0:27:00"), $KN,"mauvais geste",  true, false, $CRPI);
+//         Titulaires:
 
-echo $ft2->donneTexte();
+//        ... toute la liste !
 
-//    Résultat dans la console :
+//         Remplaçants:
 
-//        27' : Carton jaune : Ngole Kanté sur Perisic Ivan : Mauvais geste
+//        ... Toute la liste !
 
-$HL = new Joueur("Hernandez","Lucas", new DateTime("1900-01-01"), 21, $edf);
+// Faits de jeu :
 
-$CRML = new Joueur("Modric","Luca", new DateTime("1900-01-01"),  10, $cro);
+//       18' : but pour France - Mandzukic Mario (CSC)
 
-$ft3 = new Faute(new DateTime("00:03:00"), $CRML ,"très très mauvais geste de futur rageux",false, false,   $HL );
+//       28' : but pour Croatie - Perisic I
 
-echo $ft3->donneTexte();
+//       38' : but pour France - Griezmann A (Penalty)
 
-//    Résultat dans la console :
+//       59' : but pour France - Pogba P
 
-//        3' : Faute : Modric Luca sur HernandezLucas : très très mauvais geste de futur rageux
+//       65' : but pour France - Mbappé K
+
+//       69' : but pour Croatie - Manzukic M
+

@@ -9,6 +9,12 @@ class Joueur extends Humain
     private Equipe $equipe;
     public function __construct(string $nom, string $prenom, DateTime $dateNaissance, int $numeroMaillot, Equipe $equipe)
     {
+        //Test numéro de maillot entre 1 et 27
+        // SI PAS ENTRE 1 ET 27
+        if(!($numeroMaillot >= 1 && $numeroMaillot <= 27)){
+            throw new \Exception("Le numéro de maillot doit être compris entre 1 et 27");
+        }
+
         parent::__construct($nom, $prenom, $dateNaissance);
         $this->equipe = $equipe;
         //Risque d'incohérence ! il faut que le joueur soit dans l'équipe !
